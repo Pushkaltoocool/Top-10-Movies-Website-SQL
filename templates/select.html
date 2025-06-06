@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Select Movie{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="heading">Select Movie</h1>
+  <p>
+    {% if search_results %}
+      {% for movie in search_results %}
+        <!-- This link now correctly points to the 'find_movie' route with the movie's API ID -->
+        <a href="{{ url_for('find_movie', id=movie.get('id')) }}">
+          {{ movie.get('title', 'N/A') }} - {{ movie.get('release_date', 'N/A') }}
+        </a>
+        <br>
+      {% endfor %}
+    {% else %}
+      No movies found.
+    {% endif %}
+  </p>
+
+</div>
+{% endblock %}
